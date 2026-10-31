@@ -1,0 +1,18 @@
+name: WebShooterAR
+options:
+  bundleIdPrefix: com.spideryeep
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  WebShooterAR:
+    type: application
+    platform: iOS
+    sources:
+      - path: WebShooterAR
+    info:
+      path: WebShooterAR/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.spideryeep.webshooter
+        SWIFT_VERSION: 5.0
+        TARGETED_DEVICE_FAMILY: "1"
