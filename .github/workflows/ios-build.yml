@@ -13,4 +13,14 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
       - name: Build for iPhone (unsigned)
-        run: xcodebuild -project WebShooterAR.xcodeproj -scheme WebShooterAR -sdk iphoneos -configuration Release CODE_SIGNING_ALLOWED=NO build
+        run: xcodebuild -project WebShooterAR.xcodeproj -scheme WebShooterAR -sdk iphoneos -configuration Release -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - name: Package app
+        run: |
+          mkdir -p output
+          ditto -c -k --sequesterRsrc --keepParent build/Build/Products/Release-iphoneos/WebShooterAR.app output/WebShooterAR-unsigned.zip
+      - name: Upload unsigned app
+        uses: actions/upload-artifact@v4
+        with:
+          name: WebShooterAR-unsigned
+          path: output/WebShooterAR-unsigned.zip
+          if-no-files-found: error
