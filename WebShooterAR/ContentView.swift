@@ -121,11 +121,10 @@ struct WebShooterView: UIViewRepresentable {
             guard let hit else { return }
             let anchor = AnchorEntity(world: hit.worldTransform)
             let strand = ModelEntity(
-                mesh: .generateCylinder(height: 0.45, radius: 0.004),
+                mesh: .generateBox(size: [0.008, 0.008, 0.45]),
                 materials: [SimpleMaterial(color: .white, roughness: 0.25, isMetallic: false)]
             )
             strand.position = [0, 0, 0.225]
-            strand.orientation = simd_quatf(angle: .pi / 2, axis: [1, 0, 0])
             let tip = ModelEntity(mesh: .generateSphere(radius: 0.018),
                                   materials: [SimpleMaterial(color: .white, isMetallic: false)])
             tip.position = [0, 0, 0.45]
